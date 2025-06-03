@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { FaWhatsapp, FaFacebookF, FaClock } from "react-icons/fa";
+import { FaWhatsapp, FaFacebookF, FaClock, FaEnvelope } from "react-icons/fa";
 
 const Contacto = () => {
   return (
@@ -30,7 +30,7 @@ const Contacto = () => {
         <div style={styles.mapRight}>
           <iframe
             title="Mapa CRYOLD"
-            src="https://www.google.com/maps/embed?..." 
+            src="https://www.google.com/maps/embed?..."
             width="100%"
             height="300"
             style={{ border: 0, borderRadius: 12 }}
@@ -63,9 +63,6 @@ const Contacto = () => {
         </div>
       </section>
 
-     
-
-      {/* Formulario de contacto */}
       <motion.section
         style={styles.section}
         initial={{ opacity: 0, y: 40 }}
@@ -79,7 +76,7 @@ const Contacto = () => {
 
         <form
           style={styles.form}
-          action="mailto:ireneleon0730@gmail.com"
+          action="mailto:cryoldmkt@gmail.com"
           method="POST"
           encType="text/plain"
         >
@@ -90,7 +87,8 @@ const Contacto = () => {
           <button type="submit" style={styles.submitButton}>Enviar mensaje</button>
         </form>
       </motion.section>
-    <motion.section
+
+      <motion.section
         style={styles.section}
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -98,17 +96,36 @@ const Contacto = () => {
       >
         <h2 style={styles.subtitle}>Contáctanos directamente</h2>
         <div style={styles.contactButtons}>
-          <a href="https://wa.me/6188339863" target="_blank" rel="noopener noreferrer" style={styles.buttonWhats}>
+          <a
+            href="https://wa.me/5216181814809"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.buttonWhats}
+          >
             <FaWhatsapp size={24} />
             <span style={{ marginLeft: 8 }}>WhatsApp</span>
           </a>
-          <a href="https://www.facebook.com/CRYOLD" target="_blank" rel="noopener noreferrer" style={styles.buttonFace}>
+          <a
+            href="https://www.facebook.com/Cryold"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.buttonFace}
+          >
             <FaFacebookF size={24} />
             <span style={{ marginLeft: 8 }}>Facebook</span>
           </a>
+          <a
+            href="mailto:cryoldmkt@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={styles.buttonMail}
+          >
+            <FaEnvelope size={24} />
+            <span style={{ marginLeft: 8 }}>Correo</span>
+          </a>
         </div>
       </motion.section>
-  </div>  
+    </div>
   );
 };
 
@@ -214,6 +231,18 @@ const styles = {
     fontSize: "1.1rem",
     textDecoration: "none",
     boxShadow: "0 4px 10px rgba(24,119,242,0.6)",
+  },
+  buttonMail: {
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "#FF5E00",
+    color: "#fff",
+    padding: "12px 25px",
+    borderRadius: 10,
+    fontWeight: "600",
+    fontSize: "1.1rem",
+    textDecoration: "none",
+    boxShadow: "0 4px 10px rgba(255,94,0,0.6)",
   },
   form: {
     display: "flex",

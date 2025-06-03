@@ -66,7 +66,7 @@ const App = () => {
       {/* REDES SOCIALES */}
       <div style={styles.floatingButtons}>
         <a
-          href="https://www.facebook.com/tu_pagina"
+          href="https://www.facebook.com/Cryold"
           target="_blank"
           rel="noopener noreferrer"
           style={{ ...styles.bubble, bottom: 90 }}
@@ -78,7 +78,7 @@ const App = () => {
           />
         </a>
         <a
-          href="https://wa.me/5211234567890"
+          href="https://wa.me/5216181814809"
           target="_blank"
           rel="noopener noreferrer"
           style={styles.bubble}

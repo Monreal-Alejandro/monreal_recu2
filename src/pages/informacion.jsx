@@ -1,5 +1,16 @@
 import React from "react";
 
+// Subcomponente para cada persona del personal
+const PersonalCard = ({ name, role, image }) => (
+  <div style={styles.card}>
+    <img src={image} alt={name} style={styles.cardImage} />
+    <div style={styles.cardContent}>
+      <h4 style={styles.cardName}>{name}</h4>
+      <p style={styles.cardRole}>{role}</p>
+    </div>
+  </div>
+);
+
 const Informacion = () => {
   const sections = [
     {
@@ -35,7 +46,82 @@ const Informacion = () => {
         "GNP",
         "ALLIANZ",
       ],
-      image: "/img/fondo3.avif",
+      image: "/img/aseguradora.jpg",
+    },
+    {
+      title: "Nuestro Personal",
+      image: "/img/equipo.avif",
+      content:
+        "Conoce a los profesionales que conforman nuestro equipo médico y administrativo, comprometidos con tu bienestar.",
+    },
+    {
+      title: "Doctores",
+      isPersonalSection: true,
+      people: [
+        {
+          name: "Dr. José Carlos Cháidez Reyes",
+          role: "Especialista en Cirugía Articular y Artroscopia",
+          image: "/img/dr_jose.avif",
+        },
+        {
+          name: "Dra. Lorena Lara Alvarado",
+          role: "Rehabilitación y Terapia Física",
+          image: "/img/dra_lorena.avif",
+        },
+      ],
+    },
+    {
+      title: "Fisioterapeutas",
+      isPersonalSection: true,
+      people: [
+        {
+          name: "Marco Hernández",
+          role: "Terapista Físico",
+          image: "/img/marco.avif",
+        },
+        {
+          name: "Gabriela Torres",
+          role: "Apoyo Terapéutico",
+          image: "/img/gabriela.avif",
+        },
+        {
+          name: "Michel Aguirre",
+          role: "Auxiliar Médico",
+          image: "/img/michel.avif",
+        },
+           {
+          name: "Rocío Estrada",
+          role: "Administración",
+          image: "/img/rocio.avif",
+        },
+        {
+          name: "Diana López",
+          role: "Coordinadora de Rehabilitación",
+          image: "/img/diana.avif",
+        },
+        {
+          name: "Salvador Pérez",
+          role: "Atención al Cliente",
+          image: "/img/salvador.avif",
+        },
+      ],
+    },
+    {
+      title: "Recepcionistas",
+      isPersonalSection: true,
+      people: [
+        {
+          name: "Jessica López",
+          role: "Recepción y Citas",
+          image: "/img/yessica.avif",
+        },
+        {
+          name: "Fernanda Ríos",
+          role: "Recepción y Citas",
+          image: "/img/fernanada.avif",
+        },
+     
+      ],
     },
   ];
 
@@ -49,199 +135,257 @@ const Informacion = () => {
           style={{
             ...styles.sectionContainer,
             flexDirection: index % 2 === 0 ? "row" : "row-reverse",
+            flexWrap: "wrap",
           }}
         >
-          <img src={section.image} alt={section.title} style={styles.sectionImage} />
-          <div style={styles.sectionContent}>
+          {section.image && (
+            <img
+              src={section.image}
+              alt={section.title}
+              style={styles.sectionImage}
+            />
+          )}
+
+          <div
+            style={
+              section.isPersonalSection
+                ? styles.personalSectionContent
+                : styles.sectionContent
+            }
+          >
             <h2 style={styles.sectionTitle}>{section.title}</h2>
-            {section.content && <p style={styles.paragraph}>{section.content}</p>}
+
+            {section.content && (
+              <p style={styles.paragraph}>{section.content}</p>
+            )}
+
             {section.list && (
-              <ul style={styles.list}>
+              <ul style={styles.minimalList}>
                 {section.list.map((item, idx) => (
-                  <li key={idx} style={styles.listItem}>
+                  <li key={idx} style={styles.minimalListItem}>
                     {item}
                   </li>
                 ))}
               </ul>
             )}
+
+            {section.people && (
+              <div style={styles.cardsContainer}>
+                {section.people.map((person, idx) => (
+                  <PersonalCard
+                    key={idx}
+                    name={person.name}
+                    role={person.role}
+                    image={person.image}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
       ))}
 
-      {/* Sección de médicos */}
-      <div style={styles.doctorsSection}>
-        <h2 style={styles.sectionTitle}>Nuestros Especialistas</h2>
-        <div style={styles.doctorsGrid}>
-          <DoctorCard
-            name="Dr. José Carlos Cháidez Reyes"
-            image="/img/dr_jose.avif"
-            description="Certificado por el Consejo Mexicano de Ortopedia y Traumatología. Alta Especialidad en Cirugía Articular y Artroscopia y en Reconstrucción Articular Cadera y Rodilla. Experiencia en INR, Barcelona, Hospital 450, UJED y múltiples asociaciones."
-          />
-          <DoctorCard
-            name="Dra. Lorena Lara Alvarado"
-            image="/img/dra_lorena.avif"
-            description="Certificada por el Consejo Mexicano de Medicina de Rehabilitación. Posgrado en Rehabilitación Ortopédica y Deportiva. Experiencia internacional en HSS New York. Amplia formación en terapias modernas."
-          />
+      {/* FOOTER */}
+      <footer style={styles.footer}>
+        <div style={styles.footerSection}>
+          <h3 style={styles.footerTitle}>Redes Sociales</h3>
+          <div style={styles.socialIcons}>
+            <a
+              href="https://wa.me/5216181814809"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              style={styles.socialLink}
+            >
+              <img
+                src="https://img.icons8.com/color/48/000000/whatsapp--v1.png"
+                alt="WhatsApp"
+                style={styles.icon}
+              />
+            </a>
+            <a
+              href="https://www.facebook.com/Cryold"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              style={styles.socialLink}
+            >
+              <img
+                src="https://img.icons8.com/color/48/000000/facebook-new.png"
+                alt="Facebook"
+                style={styles.icon}
+              />
+            </a>
+          </div>
         </div>
-        <h3 style={styles.sectionTitle}>Equipo de Fisioterapeutas</h3>
-        <div style={styles.doctorsGrid}>
-          <DoctorCard
-            name="LTF Erika Michel Díaz Benítez"
-            image="/img/michel.avif"
-            description="Egresada DIF CREE Durango. Certificaciones en Dynamic Tape, braille, neuromuscular y más."
-          />
-          <DoctorCard
-            name="LTF Salvador Ayala Valles"
-            image="/img/salvador.avif"
-            description="Especialista en neurorehabilitación, kinesiotaping, movilización neuromeningea."
-          />
-          <DoctorCard
-            name="LTF Diana Sarahi Barraza Frausto"
-            image="/img/diana.avif"
-            description="Experta en terapia manual, hipopresivos, ejercicios y kinesiotaping."
-          />
-          <DoctorCard
-            name="LTF Gabriela Pérez Saldaña"
-            image="/img/gabriela.avif"
-            description="Formada en CREE. Punción seca, terapia manual, neuromeningea."
-          />
-          <DoctorCard
-            name="LTF Marco Antonio Pulido Martínez"
-            image="/img/marco.avif"
-            description="Fisioterapeuta de Leñadores de Durango. Experto en dry needling y kinesiotaping avanzado."
-          />
-          <DoctorCard
-            name="LTF Rocio Luna Leal"
-            image="/img/rocio.avif"
-            description="Formada en CREE. Experta en masoterapia, punción seca y primeros auxilios."
-          />
+
+        <div style={styles.footerSection}>
+          <h3 style={styles.footerTitle}>Contacto Cryold</h3>
+          <p>Dra. Lorena Lara Alvarado</p>
+          <p>Blvd. Durango 1231, esq. con Aldama</p>
+          <p>Barrio de Tierra Blanca, CP 34139</p>
+          <p>Tel. (618) 833 98 63</p>
         </div>
-        <h3 style={styles.sectionTitle}>Recepción</h3>
-        <div style={styles.doctorsGrid}>
-          <DoctorCard
-            name="Yessica Monserrath Chávez Ávila"
-            image="/img/yessica.avif"
-            description="Recepción CRYOLD/AMCCI"
-          />
-          <DoctorCard
-            name="Lic. Fernanda Elizabeth Torrecillas Herrera"
-            image="/img/fernanada.avif"
-            description="Recepción CRYOLD/AMCCI"
-          />
+
+        <div style={styles.footerSection}>
+          <h3 style={styles.footerTitle}>AMCCI</h3>
+          <p>Para servicios de ortopedia avanzada, contáctanos.</p>
+          <p>Dr. José Carlos Cháidez Reyes</p>
+          <p>Pereyra 404 Ote. Consultorio 510</p>
+          <p>Zona Centro, Durango, Dgo</p>
+          <p>Tel. (818) 827 27 72</p>
         </div>
-      </div>
-    </div>
-  );
-};
 
-const DoctorCard = ({ name, image, description }) => {
-  const isFirstTwoDoctors =
-    name === "Dr. José Carlos Cháidez Reyes" ||
-    name === "Dra. Lorena Lara Alvarado";
-
-  const imageStyle = isFirstTwoDoctors
-    ? styles.doctorImage
-    : {
-        ...styles.doctorImage,
-        maxWidth: "220px",
-        aspectRatio: "3 / 3",
-      };
-
-  return (
-    <div style={styles.doctorCard}>
-      <img src={image} alt={name} style={imageStyle} />
-      <h4 style={styles.doctorName}>{name}</h4>
-      <p style={styles.doctorDescription}>{description}</p>
+        <div style={styles.footerBottom}>
+          <p>© {new Date().getFullYear()} Creado por MediQare</p>
+        </div>
+      </footer>
     </div>
   );
 };
 
 const styles = {
   container: {
-    padding: "30px 20px 60px", // Menos padding arriba para subir el título y contenido
+    width: "100vw",
+    padding: "5px 0 0 0",
+    margin: "0",
+    overflowY: "auto",
+    minHeight: "100vh",
+    fontFamily: "'Segoe UI', 'Helvetica Neue', sans-serif",
     textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
   },
   mainTitle: {
-    fontSize: "2.8rem",     // Tamaño más discreto
-    fontWeight: "500",      // menos peso para discreción
-    color: "#003366",
-    marginBottom: "25px",   // Menor margen para que quede más compacto y arriba
+    fontSize: "2.5rem",
+    color: "#002244",
+    fontWeight: "600",
+    margin: "40px 0",
   },
   sectionContainer: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
-    gap: "40px",
-    marginBottom: "60px",
-    flexWrap: "wrap",
+    justifyContent: "space-around",
+    padding: "30px 20px",
   },
   sectionImage: {
-    width: "100%",
-    maxWidth: "500px",
-    borderRadius: "16px",
-    objectFit: "cover",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+    maxWidth: "400px",
+    borderRadius: "12px",
+    boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+    margin: "10px",
+    flexShrink: 0,
   },
   sectionContent: {
     maxWidth: "600px",
-    textAlign: "justify",
+    textAlign: "left",
+    padding: "20px",
+  },
+  personalSectionContent: {
+    maxWidth: "1000px",
+    textAlign: "left",
+    padding: "20px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
   sectionTitle: {
-    fontSize: "2rem",
-    fontWeight: "600",
+    fontSize: "1.8rem",
     color: "#003366",
-    marginBottom: "20px",
+    marginBottom: "15px",
   },
   paragraph: {
     fontSize: "1rem",
-    color: "#444",
+    color: "#333",
     lineHeight: "1.6",
   },
-  list: {
-    marginTop: "20px",
+  minimalList: {
     paddingLeft: "20px",
-    textAlign: "left",
     color: "#444",
+    fontSize: "1rem",
+    lineHeight: "1.8",
   },
-  listItem: {
+  minimalListItem: {
     marginBottom: "8px",
   },
-  doctorsSection: {
-    paddingTop: "60px",
-    backgroundColor: "#fff",
+  cardsContainer: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "20px",
+    marginTop: "20px",
+    justifyContent: "center",
   },
-  doctorsGrid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+  card: {
+    display: "flex",
+    width: "320px",
+    backgroundColor: "#f9f9f9",
+    borderRadius: "12px",
+    boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+    overflow: "hidden",
+    transition: "transform 0.3s ease",
+  },
+  cardImage: {
+    width: "100px",
+    height: "100px",
+    objectFit: "cover",
+    borderRadius: "0",
+  },
+  cardContent: {
+    padding: "10px",
+    textAlign: "left",
+  },
+  cardName: {
+    fontSize: "1.1rem",
+    fontWeight: "600",
+    marginBottom: "5px",
+  },
+  cardRole: {
+    fontSize: "0.95rem",
+    color: "#555",
+  },
+  footer: {
+    marginTop: "auto",
+    backgroundColor: "#002244",
+    color: "#fff",
+    padding: "40px 20px",
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
     gap: "30px",
-    padding: "20px",
+    fontSize: "0.9rem",
   },
-  doctorCard: {
-    background: "#f9fbff",
-    padding: "20px",
-    borderRadius: "15px",
-    boxShadow: "0 5px 15px rgba(0, 0, 0, 0.05)",
+  footerSection: {
+    minWidth: "200px",
+    maxWidth: "280px",
     textAlign: "center",
   },
-  doctorImage: {
-    width: "100%",
-    maxWidth: "300px",
-    aspectRatio: "4 / 3",
-    objectFit: "cover",
-    borderRadius: "15px",
+  footerTitle: {
+    fontSize: "1.2rem",
     marginBottom: "15px",
-    filter: "drop-shadow(1px 2px 4px rgba(0,0,0,0.12))",
+    fontWeight: "700",
+    borderBottom: "2px solid #d1a980",
+    paddingBottom: "5px",
   },
-  doctorName: {
-    fontSize: "1.3rem",
-    fontWeight: "600",
-    marginBottom: "10px",
-    color: "#222",
+  socialIcons: {
+    display: "flex",
+    justifyContent: "center",
+    gap: "20px",
   },
-  doctorDescription: {
-    fontSize: "0.9rem",
-    color: "#555",
-    lineHeight: 1.4,
+  socialLink: {
+    display: "inline-block",
+    transition: "transform 0.3s ease",
+  },
+  icon: {
+    width: "32px",
+    height: "32px",
+  },
+  footerBottom: {
+    width: "100%",
+    marginTop: "30px",
+    borderTop: "1px solid #444",
+    paddingTop: "20px",
+    textAlign: "center",
+    fontSize: "0.8rem",
+    color: "#bbb",
   },
 };
 
